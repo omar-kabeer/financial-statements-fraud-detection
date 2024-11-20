@@ -1,0 +1,39 @@
+# Python-specific ignores
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Data folder
+data/*
+!data/*.md
+!data/*.txt
+
+# Virtual environments
+env/
+venv/
+.venv/
+pip-log.txt
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
