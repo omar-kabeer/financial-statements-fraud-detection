@@ -10,9 +10,65 @@ sys.path.insert(0, "..")
 import src.dependencies
 """{{Functions}}"""
 # Functions
-def load_dataset():
-    df = pd.read_csv('../data/financials_data.csv')
-    return df
+import pandas as pd
+import os
+
+def load_dataset(file_path):
+    """
+    Load a dataset from a file while handling errors gracefully.
+
+    Parameters:
+        file_path (str): The path to the dataset file.
+
+    Returns:
+        pd.DataFrame: The loaded dataframe if successful, else None.
+    """
+    # Check if file exists
+    if not os.path.exists(file_path):
+        print(f"Error: File '{file_path}' not found.")
+        return None
+
+    # Determine file format and read accordingly
+    try:
+        if file_path.endswith('.csv'):
+            # Try reading with different encodings if UTF-8 fails
+            try:
+                df = pd.read_csv(file_path, encoding='utf-8')
+            except UnicodeDecodeError:
+                print("Warning: UTF-8 encoding failed. Trying ISO-8859-1.")
+                df = pd.read_csv(file_path, encoding='ISO-8859-1')
+
+        elif file_path.endswith(('.xlsx', '.xls')):
+            try:
+                df = pd.read_excel(file_path, engine='openpyxl')
+            except ValueError:
+                print("Error: Excel file might be corrupt or unsupported.")
+                return None
+
+        elif file_path.endswith('.json'):
+            try:
+                df = pd.read_json(file_path)
+            except ValueError:
+                print("Error: JSON file format is incorrect.")
+                return None
+
+        else:
+            print("Error: Unsupported file format. Please provide a CSV, Excel, or JSON file.")
+            return None
+
+        # Check for empty dataframe
+        if df.empty:
+            print("Warning: The loaded dataset is empty.")
+        
+        return df
+
+    except pd.errors.ParserError:
+        print("Error: File is corrupted or incorrectly formatted.")
+    except Exception as e:
+        print(f"Error: Failed to load dataset due to {str(e)}")
+    
+    return None
+
 
 def count_percentage(df, column):
     """
