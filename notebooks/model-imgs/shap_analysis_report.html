@@ -1,0 +1,35 @@
+
+    <html>
+    <head>
+        <title>SHAP Analysis Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            h1, h2 { color: #2c3e50; }
+            table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+            tr:nth-child(even) { background-color: #f9f9f9; }
+        </style>
+    </head>
+    <body>
+        <h1>SHAP Analysis Report: LGBM Classifier</h1>
+        <p>Analysis performed on 3071 samples with 123 features</p>
+        
+        <h2>Feature Importance</h2>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Importance Score</th>
+            </tr>
+    <tr><td>EBIT</td><td>0.3358</td></tr><tr><td>EBITBeforeFairValueAdjustments</td><td>0.3043</td></tr><tr><td>NetProfitAfterTax</td><td>0.1470</td></tr><tr><td>CashRatio</td><td>0.1314</td></tr><tr><td>CFF_CashAtEndOfYear</td><td>0.1235</td></tr><tr><td>OperatingMarginRatio</td><td>0.1115</td></tr><tr><td>CFF_CashAtStartOfYear</td><td>0.1000</td></tr><tr><td>CFI_IncDecOtherFinAssets</td><td>0.0978</td></tr><tr><td>VA_Revenue_NetProfitAfterTax</td><td>0.0905</td></tr><tr><td>EBITDA</td><td>0.0864</td></tr>
+        </table>
+        
+        <h2>Interpretation Summary</h2>
+        <p>The SHAP analysis reveals the following insights:</p>
+        <ul>
+    <li><strong>EBIT</strong> is among the most influential features for this model.</li><li><strong>EBITBeforeFairValueAdjustments</strong> is among the most influential features for this model.</li><li><strong>NetProfitAfterTax</strong> is among the most influential features for this model.</li>
+        </ul>
+        <p>Examine the generated SHAP plots for detailed visual analysis of feature effects.</p>
+    </body>
+    </html>
+    
